@@ -81,9 +81,9 @@ class Tester():
 
 
 def main():
+    ## an example
     model = resnet18(num_classes=10)
     model = model.cuda()
-
     dataset = CIFAR10(train=False,root="/.datasets",transform=tv.transforms.ToTensor(), download=True)
     import types
     args = types.SimpleNamespace()
@@ -93,6 +93,7 @@ def main():
     args.perturbation_type = "linf"
     args.batch_size = 128
     args.k = 10
+
     std_acc, adv_acc = Tester(model, dataset, args).run()
     print(f"std acc: {std_acc * 100:.3f}%, adv_acc: {adv_acc * 100:.3f}%")
 
